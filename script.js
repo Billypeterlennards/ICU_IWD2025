@@ -1,78 +1,113 @@
-"use strict"; // Enables strict mode to catch common JavaScript errors and enforce safer coding practices.
+/*
+📖 Introduction to JavaScript (JS)
+--------------------------------------------------------
+What is JavaScript?
+JavaScript (JS) is a high-level programming language used to add 
+interactivity, functionality, and logic to web pages. Unlike static 
+HTML and CSS, JavaScript allows developers to create dynamic and 
+responsive websites.
 
-// Immediately Invoked Function Expression (IIFE) to prevent global variable pollution and execute the script immediately.
-(function () {
-    // Ensures this script runs only in a browser environment where 'window' and 'document' exist.
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
+What Does JavaScript Stand For?
+Java – JavaScript was originally inspired by the Java programming language but is entirely different.
+Script – JavaScript is a scripting language, meaning it executes small programs (scripts) directly in the browser.
+
+Why is JavaScript Important?
+✅ Makes web pages interactive (e.g., animations, form validation, image sliders)
+✅ Handles dynamic content (e.g., fetching books from an API)
+✅ Improves user experience (UX) by responding to user actions
+✅ Works with HTML & CSS to create fully functional web applications
+--------------------------------------------------------
+
+✅ CSS and JavaScript fully explained with detailed comments for every line and element
+✅ Abbreviations expanded and defined (e.g., DOM, ul, img)
+✅ Clear and easy-to-understand explanations on how each line works
+*/
+
+/* Enforces strict mode to catch errors and enforce safer coding practices */
+"use strict"; 
+
+// Waits for the entire HTML document to load before running the script
+document.addEventListener("DOMContentLoaded", function () { 
+    
+    let slideIndex = 0; 
+    // Stores the index of the current slide
+
+    /**
+     * Function to handle the image slider
+     * Loops through images and changes them every 3 seconds
+     */
+    function showSlides() {
+        let slides = document.getElementsByClassName("slide"); 
+        // Selects all elements with the class "slide"
         
-        // Waits until the entire HTML document is loaded before executing the script.
-        document.addEventListener("DOMContentLoaded", function () {
-            
-            var slideIndex = 0; // Stores the index of the current slide
-            showSlides(); // Calls the function to start the image slider
-
-            function showSlides() {
-                var slides = document.getElementsByClassName("slide"); // Gets all elements with class 'slide'
-                for (var i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none"; // Hides all slides initially
-                }
-                slideIndex++; // Increments the slide index
-                if (slideIndex > slides.length) {
-                    slideIndex = 1; // Resets index if it exceeds the number of slides
-                }
-                slides[slideIndex - 1].style.display = "block"; // Displays the current slide
-                window.setTimeout(showSlides, 3000); // Changes slide every 3 seconds
-            }
-
-            var form = document.getElementById("contactForm"); // Gets the form element by ID
-            if (form) {
-                form.addEventListener("submit", function (event) {
-                    event.preventDefault(); // Prevents the default form submission behavior
-
-                    var name = document.getElementById("name").value; // Gets the value of the name input field
-                    var email = document.getElementById("email").value; // Gets the value of the email input field
-                    var message = document.getElementById("message").value; // Gets the value of the message input field
-
-                    if (name === "" || email === "" || message === "") {
-                        alert("Please fill in all fields."); // Alerts the user if any field is empty
-                    } else {
-                        alert("Form submitted successfully!"); // Alerts the user if the form is valid
-                    }
-                });
-            }
-
-            // Smooth scrolling effect for navigation links
-            var navLinks = document.querySelectorAll("nav ul li a"); // Selects all navigation links
-            navLinks.forEach(function(link) {
-                link.addEventListener("click", function(event) {
-                    event.preventDefault(); // Prevents default anchor link behavior
-                    var targetId = this.getAttribute("href").substring(1); // Extracts the target section ID
-                    var targetSection = document.getElementById(targetId); // Gets the target section element
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 50, // Scrolls smoothly to the target section
-                            behavior: "smooth"
-                        });
-                    }
-                });
-            });
-
-            // Dark mode toggle functionality
-            var darkModeToggle = document.createElement("button"); // Creates a button element
-            darkModeToggle.innerText = "Toggle Dark Mode"; // Sets the button text
-            darkModeToggle.style.position = "fixed"; // Positions the button on the screen
-            darkModeToggle.style.top = "10px";
-            darkModeToggle.style.right = "10px";
-            darkModeToggle.style.padding = "10px";
-            darkModeToggle.style.background = "#333";
-            darkModeToggle.style.color = "#fff";
-            darkModeToggle.style.border = "none";
-            darkModeToggle.style.cursor = "pointer";
-            document.body.appendChild(darkModeToggle); // Adds the button to the page
-
-            darkModeToggle.addEventListener("click", function () {
-                document.body.classList.toggle("dark-mode"); // Toggles the 'dark-mode' class on the body
-            });
-        });
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none"; 
+            // Hides all slides initially
+        }
+        slideIndex++; 
+        // Moves to the next slide
+        
+        if (slideIndex > slides.length) { 
+            slideIndex = 1; 
+            // Resets to the first slide after reaching the last one
+        }
+        
+        slides[slideIndex - 1].style.display = "block"; 
+        // Displays the current slide
+        
+        setTimeout(showSlides, 3000); 
+        // Calls the showSlides function every 3 seconds
     }
-})();
+    
+    showSlides(); 
+    // Starts the slider
+
+    // Toggles dark mode on and off when the button is clicked
+    document.getElementById("darkModeToggle").addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode"); 
+        // Adds or removes the "dark-mode" class on the body element
+    });
+
+    /**
+     * Function to fetch books from Google Books API
+     * @param {string} category - The category of books to fetch
+     */
+    function fetchBooks(category = "all") {
+        let query = category === "all" ? "library" : category; 
+        // Sets the default query to "library" unless another category is selected
+
+        fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=6`) 
+        // Calls the Google Books API to fetch books
+        
+            .then(response => response.json()) 
+            // Converts the response to JSON format
+            
+            .then(data => {
+                let bookList = document.getElementById("book-list"); 
+                // Gets the container where books will be displayed
+                bookList.innerHTML = ""; 
+                // Clears previous books
+
+                data.items.forEach(book => { 
+                    // Loops through each book in the fetched data
+                    let bookDiv = document.createElement("div"); 
+                    // Creates a new <div> element for the book
+
+                    let isBorrowed = Math.random() < 0.5; 
+                    // Randomly assigns a borrowed status
+
+                    bookDiv.innerHTML = `
+                        <img src="${book.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/200'}">
+                        <h4>${book.volumeInfo.title}</h4>
+                        <button class="borrow-btn ${isBorrowed ? 'borrowed' : ''}">
+                            ${isBorrowed ? "Borrowed" : "Borrow"}
+                        </button>
+                    `;
+                    bookList.appendChild(bookDiv);
+                });
+            });
+    }
+
+    fetchBooks(); 
+    // Loads books when the page loads
+});

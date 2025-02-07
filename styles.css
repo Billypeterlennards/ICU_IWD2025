@@ -1,104 +1,148 @@
-/*
-CSS (Cascading Style Sheets) - This file defines the styles for the webpage.
-CSS is used to control the layout, colors, fonts, spacing, and responsiveness of the HTML elements.
-It allows us to separate design from structure (HTML).
+/* 
+📖 Introduction to CSS (Cascading Style Sheets)
+--------------------------------------------------------
+What is CSS?
+CSS (Cascading Style Sheets) is a language used to control the 
+appearance, layout, and presentation of HTML elements on a webpage. 
+It allows developers to separate content (HTML) from design (CSS), 
+making the website more structured, scalable, and maintainable.
+
+What Does CSS Stand For?
+C – Cascading: CSS follows a hierarchy, meaning styles can be overridden based on specificity and order.
+S – Style: CSS is used to apply styles like colors, fonts, spacing, and positioning to HTML elements.
+S – Sheets: CSS works with style sheets, which are files that apply rules to multiple pages.
+
+Why is CSS Important?
+✅ Controls the layout of web pages
+✅ Improves readability and aesthetics
+✅ Enhances user experience (UX)
+✅ Ensures consistency across multiple pages
+✅ Enables responsiveness for different screen sizes
+--------------------------------------------------------
 */
 
-/* General Page Styling */
+/* General Body Styling */
 body {
-    font-family: Arial, sans-serif; /* Sets the default font for the entire page */
-    margin: 0; /* Removes default browser margin */
-    padding: 0; /* Removes default browser padding */
-    background-color: #f4f4f4; /* Light gray background color */
-    color: #333; /* Dark gray text color */
+    font-family: Arial, sans-serif; /* Sets default font to Arial, using sans-serif as a fallback */
+    margin: 0; /* Removes default margin for a full-width layout */
+    padding: 0; /* Removes default padding for a clean layout */
+    background-color: #f4f4f4; /* Sets a light gray background color */
+    color: #333; /* Sets the default text color to dark gray for readability */
+    text-align: center; /* Centers all text on the page */
 }
 
-/* Header Styling - Styles the header of the page */
+/* Header Styling */
 header {
-    background: #333; /* Dark background color */
-    color: white; /* White text for contrast */
-    text-align: center; /* Centers the text inside the header */
-    padding: 20px 0; /* Adds vertical spacing */
+    background: #333; /* Sets a dark gray background */
+    color: white; /* Sets text color to white for contrast */
+    padding: 20px; /* Adds padding inside the header */
 }
 
-/* Navigation Bar Styling */
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+    padding: 10px; /* Adds space inside the button */
+    background: #ff9800; /* Sets background color to orange */
+    color: white; /* Sets text color to white */
+    border: none; /* Removes button border */
+    cursor: pointer; /* Changes the cursor to a pointer when hovered */
+}
+
+/* Navigation Bar */
 nav ul {
     list-style: none; /* Removes bullet points from the navigation list */
-    background: #444; /* Dark gray background color */
-    text-align: center; /* Centers the navigation links */
-    padding: 0; /* Removes extra space */
+    background: #444; /* Sets dark gray background color */
+    padding: 0; /* Removes default padding */
 }
 
 nav ul li {
-    display: inline; /* Makes the navigation links appear horizontally */
-    padding: 15px; /* Adds space around each menu item */
+    display: inline; /* Displays navigation items horizontally */
+    padding: 15px; /* Adds space around each navigation item */
 }
 
 nav ul li a {
-    color: white; /* White text color */
-    text-decoration: none; /* Removes the underline from links */
+    color: white; /* Sets link text color to white */
+    text-decoration: none; /* Removes underline from links */
 }
 
-/* Image Slider Styling - Styles the image carousel */
+/* Image Slider */
 .slider-container {
-    position: relative; /* Allows absolute positioning of slides */
-    max-width: 100%; /* Ensures images don't exceed the page width */
-    overflow: hidden; /* Prevents images from overflowing outside the container */
+    position: relative; /* Positions the slider relative to its parent */
+    max-width: 80%; /* Sets a max width for the slider */
+    margin: auto; /* Centers the slider */
+    overflow: hidden; /* Hides content that overflows the container */
 }
 
-.slide {
-    display: none; /* Hides all slides by default */
-    width: 100%; /* Ensures images take full width of the container */
+.slider-img {
+    width: 100%; /* Ensures the image fills the width of its container */
+    max-height: 400px; /* Sets a max height of 400px */
+    object-fit: cover; /* Ensures images are properly sized without distortion */
 }
 
-.slide img {
-    width: 50%; /* Adjusts image width to 50% of the container */
-    height: 400px; /* Sets a fixed height for all images */
+/* Dark Mode Styling */
+.dark-mode {
+    background-color: #222; /* Changes background color to dark gray */
+    color: white; /* Changes text color to white */
+}
+/* Books Section */
+#books {
+    padding: 20px; /* Adds spacing inside the books section */
+    background: white; /* Sets background color to white */
 }
 
-/* Section Styling - Applies styling to all sections */
-section {
-    padding: 20px; /* Adds spacing inside each section */
-    margin: 20px; /* Adds spacing outside each section */
-    background: white; /* White background */
-    border-radius: 5px; /* Adds rounded corners */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow effect */
+/* Book List - Grid Layout */
+#book-list {
+    display: grid; /* Uses CSS Grid for layout */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    /* Creates responsive columns (min 200px, auto adjust) */
+    gap: 20px; /* Adds space between grid items */
+    justify-content: center; /* Centers the grid within the container */
+    padding: 20px; /* Adds padding inside the book list */
 }
 
-/* Form Styling - Styles the contact form */
-form {
-    display: flex; /* Uses flexbox to align elements vertically */
-    flex-direction: column; /* Ensures input fields are stacked */
-    width: 300px; /* Sets a fixed width for the form */
-    margin: auto; /* Centers the form */
+/* Individual Book Card */
+.book {
+    background: #fff; /* Sets background color to white */
+    border: 1px solid #ddd; /* Adds a light gray border */
+    border-radius: 5px; /* Rounds the corners of the book card */
+    padding: 15px; /* Adds space inside the book card */
+    text-align: center; /* Centers the text */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    transition: transform 0.3s ease; /* Smooth animation on hover */
 }
 
-form label {
-    margin-top: 10px; /* Adds spacing above labels */
-    font-weight: bold; /* Makes labels bold for emphasis */
+.book:hover {
+    transform: scale(1.05); /* Enlarges the book slightly on hover */
 }
 
-form input, form textarea, form button {
-    margin-top: 10px; /* Adds spacing between form elements */
-    padding: 10px; /* Increases input and button padding for better readability */
-    border: 1px solid #ccc; /* Adds a light gray border */
-    border-radius: 5px; /* Rounds the edges of inputs and buttons */
+/* Book Image */
+.book img {
+    width: 100%; /* Ensures images take full width of the book card */
+    height: 250px; /* Sets a fixed height for images */
+    object-fit: cover; /* Ensures the image fits without distortion */
+    border-radius: 5px; /* Rounds the corners of the image */
 }
 
-form button {
-    background-color: #333; /* Dark background color for the button */
-    color: white; /* White text for better contrast */
-    cursor: pointer; /* Changes cursor to pointer on hover */
+/* Book Title */
+.book h4 {
+    margin-top: 10px; /* Adds space above the title */
+    font-size: 16px; /* Adjusts title font size */
+    color: #333; /* Sets title color */
 }
 
-form button:hover {
-    background-color: #555; /* Slightly lighter shade when hovered */
+/* Borrow Button */
+.borrow-btn {
+    margin-top: 10px; /* Adds space above the button */
+    padding: 10px 15px; /* Adds padding inside the button */
+    border: none; /* Removes button border */
+    border-radius: 5px; /* Rounds the button corners */
+    cursor: pointer; /* Changes cursor to pointer */
+    background-color: #007bff; /* Sets button background to blue */
+    color: white; /* Sets text color to white */
+    font-size: 14px; /* Adjusts font size */
+    transition: background 0.3s; /* Smooth background transition */
 }
 
-/* Footer Styling - Styles the footer section */
-footer {
-    text-align: center; /* Centers the text inside the footer */
-    padding: 10px; /* Adds padding to the footer */
-    background: #333; /* Dark background color */
-    color: white; /* White text color */
+/* Borrowed Button (Red) */
+.borrowed {
+    background-color: red !important; /* Changes color to red if book is borrowed */
 }

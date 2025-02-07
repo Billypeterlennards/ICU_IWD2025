@@ -1,24 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<!-- Defines the document type as HTML5, ensuring the browser renders the page in modern HTML5 mode -->
+
+<html lang="en"> 
+<!-- The root element of an HTML document, with "lang" set to English for accessibility and SEO optimization -->
+
 <head>
     <meta charset="UTF-8">
+    <!-- Specifies the character encoding as UTF-8, supporting special characters and multiple languages -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensures the webpage is responsive by adjusting to different screen sizes, especially for mobile devices -->
+
     <title>Library Website</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Linking external CSS file -->
-    <script src="script.js" defer></script> <!-- Linking external JavaScript file -->
+    <!-- Sets the title of the webpage, which appears on the browser tab -->
+
+    <link rel="stylesheet" href="styles.css">
+    <!-- Links the external CSS file for styling the webpage -->
+
+    <script src="script.js" defer></script>
+    <!-- Links the external JavaScript file, with "defer" ensuring it loads only after the page content is fully loaded -->
 </head>
+
 <body>
+    <!-- The main body of the webpage, containing all visible elements -->
+
     <!-- Header Section -->
     <header>
-        <h1>Welcome to Our Library</h1>
+        <!-- <header> defines the introductory section, usually containing the website title and navigation -->
+        <h1>Welcome to Our Library</h1> 
+        <!-- <h1> is the highest level heading, used for the main title of the page -->
+
         <p>Your gateway to knowledge and information.</p>
+        <!-- <p> represents a paragraph, providing additional information -->
+
+        <button id="darkModeToggle">Toggle Dark Mode</button>
+        <!-- <button> creates a clickable button; "id" uniquely identifies it for JavaScript interactions -->
     </header>
     
-    <!-- Navigation Menu -->
+    <!-- Navigation Bar -->
     <nav>
+        <!-- <nav> defines the navigation menu, used to link different sections of the page -->
         <ul>
+            <!-- <ul> defines an unordered list (bullet points by default) -->
             <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
+            <!-- <li> creates a list item; <a> is an anchor tag that links to another part of the page -->
+            <!-- "href" (Hypertext REFerence) specifies the destination; "#home" is an internal link to an ID -->
+            
+            <li><a href="#books">Books</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -26,65 +54,94 @@
     
     <!-- Image Slider Section -->
     <section id="slider">
+        <!-- <section> defines a separate section of the webpage; "id" allows it to be referenced -->
+        <h2>Image Gallery</h2>
+        <!-- <h2> is a subheading, lower in importance than <h1> -->
+
         <div class="slider-container">
-            <div class="slide fade">
-                <img src="images/a.jpg" alt="Library Image 1">
-            </div>
-            <div class="slide fade">
-                <img src="images/b.jpg" alt="Library Image 2">
-            </div>
-            <div class="slide fade">
-                <img src="images/c.jpg" alt="Library Image 3">
-            </div>
+            <!-- <div> is a container element for grouping elements together; "class" applies CSS styles -->
+            
+<!-- Online images with direct image URLs from Pexels -->
+<div class="slide fade">
+    <img class="slider-img" src="https://images.pexels.com/photos/3912992/pexels-photo-3912992.jpeg" alt="Engineer Fitting Prosthetic Arm">
+</div>
+
+<div class="slide fade">
+    <img class="slider-img" src="https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg" alt="High Angle Robot">
+</div>
+
+<div class="slide fade">
+    <img class="slider-img" src="https://images.pexels.com/photos/6417967/pexels-photo-6417967.jpeg" alt="Smiling Woman">
+</div>
+
+            <!-- Local images -->
+            <div class="slide fade"><img class="slider-img" src="images/a.jpg" alt="Local Library 1"></div>
+            <div class="slide fade"><img class="slider-img" src="images/b.jpg" alt="Local Library 2"></div>
+            <div class="slide fade"><img class="slider-img" src="images/c.jpg" alt="Local Library 3"></div>
         </div>
     </section>
-    
-    <!-- HTML Topics Sections -->
-    <section id="html-topics">
-        <h2>HTML Topics</h2>
-        <div class="html-category">
-            <h3>HTML Basics</h3>
-            <p>HTML stands for HyperText Markup Language and is used to create webpages.</p>
-        </div>
-        <div class="html-category">
-            <h3>HTML Elements & Attributes</h3>
-            <p>Elements are the building blocks of HTML pages, and attributes provide additional information about elements.</p>
-        </div>
-        <div class="html-category">
-            <h3>HTML Forms</h3>
-            <p>Forms are used to collect user inputs such as text, numbers, and passwords.</p>
-        </div>
+
+    <!-- Books Section -->
+    <section id="books">
+        <h2>Explore Our Books</h2>
+        <!-- Heading for the books section -->
+
+        <label for="categorySelect">Select Category:</label>
+        <!-- <label> provides a description for an input field -->
+        <!-- "for" associates the label with the "id" of the input field -->
+
+        <select id="categorySelect">
+            <!-- <select> creates a dropdown menu -->
+            <option value="all">All Categories</option>
+            <!-- <option> defines each selectable item in the dropdown -->
+            <option value="fiction">Fiction</option>
+            <option value="science">Science</option>
+            <option value="history">History</option>
+        </select>
+
+        <div id="book-list"></div>
+        <!-- Empty <div> where JavaScript will insert book details dynamically -->
     </section>
-    
-    <!-- Contact Form -->
+
+    <!-- Contact Form Section -->
     <section id="contact">
         <h2>Contact Us</h2>
         <form id="contactForm">
+            <!-- <form> creates a user input form -->
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
-            
+            <!-- <input> is a field where users enter text -->
+            <!-- "type" defines the input format (text, email, number, etc.) -->
+            <!-- "required" makes the field mandatory before submission -->
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-            
+            <!-- "type=email" ensures only valid email formats can be entered -->
+
             <label for="message">Message:</label>
             <textarea id="message" name="message" required></textarea>
-            
+            <!-- <textarea> allows users to enter multi-line text -->
+
             <button type="submit">Send</button>
+            <!-- <button> submits the form -->
         </form>
     </section>
     
-    <!-- Embedded Video Section -->
+    <!-- Video Section -->
     <section id="video">
-        <h2>Library Tour</h2>
-        <video controls>
-            <source src="library-tour.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <h2>Learn Web Development</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/mU6anWqZJcc" frameborder="0" allowfullscreen></iframe>
+        <!-- <iframe> embeds a YouTube video -->
+        <!-- "width" and "height" set the size -->
+        <!-- "src" contains the video link -->
+        <!-- "allowfullscreen" enables full-screen mode -->
     </section>
     
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Library Website. All rights reserved.</p>
+        <!-- <footer> is used for footer content like copyright info -->
+        <!-- "&copy;" is the HTML entity for the copyright symbol -->
     </footer>
 </body>
 </html>
